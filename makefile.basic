@@ -1,0 +1,31 @@
+SHELL=/bin/bash
+INCLUDEDIR=/usr/include
+INCLUDESUBDIR=/usr/include/lib
+library: llist.o stack.o queue.o heap.o union_find.o
+	gcc -shared -fPIC -o libdatastructures.so stack.o queue.o heap.o union_find.o llist.o
+
+llist.o: llist.h llist.c
+	gcc -Wall -c llist.c
+
+stack.o: stack.h llist.h stack.c llist.c
+	gcc -Wall -c stack.c
+
+queue.o: queue.h llist.h queue.c llist.c
+	gcc -Wall -c queue.c
+
+heap.o: heap.h  heap.c
+	gcc -Wall -c heap.c
+
+union_find.o: union_find.h union_find.c
+	gcc -Wall -c union_find.c
+
+install: library
+	-mkdir $(INCLUDESUBDIR)
+	cp libdatastructures.so $(INCLUDESUBDIR)
+	cp llist.h stack.h queue.h heap.h union_find.h $(INCLUDESUBDIR)
+
+clean:
+	rm -f llist.o stack.o queue.o heap.o union_find.o
+
+distclean:
+	rm -f llist.o stack.o queue.o heap.o union_find.o libdatastructures.so

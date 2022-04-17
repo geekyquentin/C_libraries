@@ -1,0 +1,18 @@
+SHELL=/bin/bash
+INCLUDEDIR=/usr/include
+INCLUDESUBDIR=/usr/include/lib
+
+library: graph.o stack.h queue.h union_find.h llist.h
+	ar rcs libgraph.a graph.o
+
+graph.o: graph.h graph.c llist.h llist.c stack.h queue.h
+	gcc -Wall -c graph.c -L $(INCLUDESUBDIR) -ldatastructures
+
+install:
+	cp libgraph.a $(INCLUDESUBDIR)
+
+clean:
+	rm -f graph.o 
+
+distclean:
+	rm -f graph.o libgraph.a
