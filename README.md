@@ -12,3 +12,11 @@
 ### Running `makefile.graph`:
 * After running `makefile.basic`, enter the commands `make -f makefile.graph`
 * After that, run `sudo make -f makefile.graph install`
+
+
+### Run `make`
+
+### Run `export LD_LIBRARY_PATH=/usr/local/lib`
+
+### Run `./graph.out`
+Input the name of the textfile which has the number of nodes and edges.
